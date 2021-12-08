@@ -1,8 +1,12 @@
 # Personal-Project
 
 APIs
+
 VirusTotal
+
 Plino
+
+Mailgun
 
 https://www.abstractapi.com/email-verification-validation-api
 
