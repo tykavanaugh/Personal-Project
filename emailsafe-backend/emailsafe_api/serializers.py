@@ -45,4 +45,4 @@ class EmailListSerializer(serializers.ModelSerializer):
 class EmailItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailItem
-        fields = ['contents','timestamp']
+        fields = ['envelope','headers','plain','html','reply_plain','attachments']
