@@ -27,3 +27,10 @@ https://www.programmableweb.com/api/spamhaus-intelligence-rest-api-v1
 https://www.programmableweb.com/api/google-safe-browsing-rest-api
 
 https://phishtank.org/api_info.php
+
+
+# Acknowledgements
+
+Credit to jcarbaugh for django-cloudmailin code
+
+https://github.com/jcarbaugh/django-cloudmailin
