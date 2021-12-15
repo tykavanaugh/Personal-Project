@@ -47,7 +47,7 @@ const MainNavbar = () => {
               navbar
             >
               <NavItem>
-                  <Link to='/userhome' style={navbarLinkStyle} >Your Reports</Link>
+                <Link to='/userhome' style={navbarLinkStyle} >View Your Reports</Link>
               </NavItem>
             </Nav>
             <UncontrolledDropdown
