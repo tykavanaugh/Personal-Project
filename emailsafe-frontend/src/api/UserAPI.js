@@ -1,5 +1,5 @@
-const login = (userObject) => {
-  return fetch('http://localhost:8000/api/auth/login/', {
+const login = async (userObject) => {
+  return await fetch('http://localhost:8000/api/auth/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -8,8 +8,8 @@ const login = (userObject) => {
   }).then(res => res)
 };
 
-const getLoggedInUser = (token) => {
-  return fetch('http://localhost:8000/api/current_user', {
+const getLoggedInUser = async (token) => {
+  return await fetch('http://localhost:8000/api/current_user/', {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `JWT ${token}`
@@ -17,8 +17,8 @@ const getLoggedInUser = (token) => {
   }).then(res => res)
 };
 
-const signupUser = (userObject) => {
-  return fetch('http://localhost:8000/api/users/', {
+const signupUser = async (userObject) => {
+  return await fetch('localhost:8000/api/auth/register/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

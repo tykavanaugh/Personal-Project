@@ -4,17 +4,19 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import Navbar from './components/Navbar';
+import UserContext from './contexts/UserContext';
 import { getLoggedInUser, login } from './api/UserAPI';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const [ user, setUser ] = useState(null);
+  const [error, setError] = useState(null);
 
+  console.log("USER: ", user)
   useEffect(() => {
     const getUser = async () => {
-      if (localStorage.getItem("auth-user") !== 'null') {
-        let response = await getLoggedInUser(localStorage.getItem("auth-user"));
+      if (localStorage.getItem("token") !== 'null') {
+        let response = await getLoggedInUser(localStorage.getItem("token"));
         let data = await response.json();
         if (data.username) {
           setIsLoggedIn(true);
@@ -48,42 +50,17 @@ function App() {
     setUser(null);
   }
 
-  const renderLoginPage = () => {
-    return (
-      <LoginPage
-        isLoggedIn={isLoggedIn}
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        user={user}
-      />
-    )
-  }
-
-  const renderHomePage = () => {
-    return (
-      <HomePage
-        isLoggedIn={isLoggedIn}
-        user={user}
-        handleLogout={handleLogout}
-      />
-    )
-  }
-
-  const renderSignupPage = () => {
-    return (
-      <SignupPage />
-    )
-  }
 
   return (
     <div className="App">
-      <Navbar />
       <Router>
-        <Routes>
-          <Route exact path="/" element={renderHomePage()} />
-          <Route exact path="/login" element={renderLoginPage()} />
-          <Route exact path="/signup" element={renderSignupPage()} />
-        </Routes>
+        <UserContext.Provider value={{ user: user, setUser: handleLogin, error: error }}>
+          <Routes>
+            <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>} />
+            <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} user={user} />} />
+            <Route path="/signup" element={<SignupPage />} />
+          </Routes>
+        </UserContext.Provider>
       </Router>
     </div>
   );
