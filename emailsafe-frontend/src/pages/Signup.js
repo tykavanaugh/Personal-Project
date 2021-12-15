@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BASE_URL, BASE_BACKEND } from '../globals'
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +10,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
-      window.location.replace('http://localhost:3000/userhome');
+      window.location.replace(`${BASE_URL}/userhome`);
     } else {
       setLoading(false);
     }
@@ -24,7 +25,7 @@ const Signup = () => {
       password2: password2
     };
 
-    fetch('http://localhost:8000/api/auth/register/', {
+    fetch(`${BASE_BACKEND}auth/register/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +37,7 @@ const Signup = () => {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem('token', data.key);
-          window.location.replace('http://localhost:3000/userhome');
+          window.location.replace(`${BASE_URL}userhome`);
         } else {
           setUsername('');
           setPassword1('');
@@ -66,7 +67,7 @@ const Signup = () => {
           name='password1'
           type='password'
           value={password1}
-          onChange={e => setPassword1(e.target.value)}
+          onChange={event => setPassword1(event.target.value)}
           required
         />{' '}
         <br />
@@ -75,7 +76,7 @@ const Signup = () => {
           name='password2'
           type='password'
           value={password2}
-          onChange={e => setPassword2(e.target.value)}
+          onChange={event => setPassword2(event.target.value)}
           required
         />{' '}
         <br />

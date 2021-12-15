@@ -19,6 +19,9 @@ const Navbar = () => {
           <>
             {' '}
             <li>
+              <Link to='/userhome'>Home</Link>
+            </li>
+            <li>
               <Link to='/dashboard'>Dashboard</Link>
             </li>
             <li>

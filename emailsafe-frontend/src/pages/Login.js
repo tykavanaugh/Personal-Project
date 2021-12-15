@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BASE_URL, BASE_BACKEND } from '../globals'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -8,7 +9,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
-      window.location.replace('http://localhost:3000/userhome');
+      window.location.replace(`${BASE_URL}userhome`);
     } else {
       setLoading(false);
     }
@@ -20,7 +21,7 @@ const Login = () => {
       username: username,
       password: password
     }
-    const response = await fetch('http://localhost:8000/api/auth/login/',{
+    const response = await fetch(`${BASE_BACKEND}auth/login/`,{
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
@@ -32,7 +33,7 @@ const Login = () => {
       if (data.key) {
         localStorage.clear();
         localStorage.setItem('token', data.key);
-        window.location.replace('http://localhost:3000/userhome');
+        window.location.replace(`${BASE_URL}userhome`);
       } else {
         setUsername('');
         setPassword('');
@@ -54,7 +55,7 @@ const Login = () => {
             type='username'
             value={username}
             required
-            onChange={e => setUsername(e.target.value)}
+            onChange={event => setUsername(event.target.value)}
           />{' '}
           <br />
           <label htmlFor='password'>Password:</label> <br />
@@ -63,7 +64,7 @@ const Login = () => {
             type='password'
             value={password}
             required
-            onChange={e => setPassword(e.target.value)}
+            onChange={event => setPassword(event.target.value)}
           />{' '}
           <br />
           <input type='submit' value='Login' />
