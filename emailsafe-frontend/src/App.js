@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import Navbar from './components/Navbar';
 import { getLoggedInUser, login } from './api/UserAPI';
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Router>
         <Routes>
           <Route exact path="/" element={renderHomePage()} />

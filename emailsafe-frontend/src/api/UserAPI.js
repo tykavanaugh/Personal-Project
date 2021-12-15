@@ -1,5 +1,5 @@
 const login = (userObject) => {
-  return fetch('http://localhost:8000/api/login', {
+  return fetch('http://localhost:8000/api/auth/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
