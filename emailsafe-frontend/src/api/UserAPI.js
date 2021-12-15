@@ -18,7 +18,7 @@ const getLoggedInUser = (token) => {
 };
 
 const signupUser = (userObject) => {
-  return fetch('http://localhost:8000/api/users', {
+  return fetch('http://localhost:8000/api/users/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
