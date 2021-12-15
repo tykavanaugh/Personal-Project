@@ -47,14 +47,7 @@ const MainNavbar = () => {
               navbar
             >
               <NavItem>
-                <NavLink>
-                  <Link to='/userhome' style={navbarLinkStyle} >Home</Link>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink>
-                  <Link to='/dashboard' style={navbarLinkStyle} >Dashboard</Link>
-                </NavLink>
+                  <Link to='/userhome' style={navbarLinkStyle} >Your Reports</Link>
               </NavItem>
             </Nav>
             <UncontrolledDropdown
@@ -91,19 +84,14 @@ const MainNavbar = () => {
           </Nav>
           <Nav>
             <NavItem>
-              <NavLink>
                 <Link to='/login' style={navbarLinkStyle} >Login</Link>
-              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>
                 <Link to='/signup' style={navbarLinkStyle} >Signup</Link>
-              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
         )}
-        
       </Navbar>
     </div>
     </>

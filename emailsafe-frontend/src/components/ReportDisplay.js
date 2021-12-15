@@ -28,7 +28,6 @@ const ReportDisplay = (props) => {
   }, []);
   
   const handleAccordionClick = (event) => {
-    console.log(event.currentTarget.parentElement.id)
     setOpenItem(String(event.currentTarget.parentElement.id))
   }
 
