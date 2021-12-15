@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import datetime
 import django_heroku
 
 
@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-0a7ao01iejrw&&lrifd3nm2h3ru7&2%m)i=8)5yud9=!6zr8ic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://localhost:3000/']
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -133,3 +134,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals())
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA':datetime.timedelta(days=2),
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA':datetime.timedelta(days=7),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'emailsafe.utils.my_jwt_response_handler',
+}

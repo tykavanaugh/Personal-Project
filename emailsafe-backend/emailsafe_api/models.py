@@ -5,14 +5,8 @@ from django.utils.timezone import now
 
 # Create your models here.
 
-class EmailList(models.Model):
-    user = models.ForeignKey(User, related_name="emails_list",on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user}'s email list"
-
 class EmailItem(models.Model):
-    #list = models.ForeignKey(EmailList,related_name='emails',on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_emails',null=True,blank=True)
     timestamp = models.DateTimeField(default = now())
     envelope = models.JSONField(default=dict,null=True)
     headers = models.JSONField(default=dict,null=True)

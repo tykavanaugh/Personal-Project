@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
-from .models import EmailList,EmailItem
+from .models import EmailItem
 
 ## Serializes current user
 class UserSerializer(serializers.ModelSerializer):
@@ -37,12 +37,9 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         fields = ['token', 'username', 'password']
 
 #Custom Serializers
-class EmailListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = EmailList
-        fields = ['emails']
 
 class EmailItemSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(default=serializers.CurrentUserDefault())
     class Meta:
         model = EmailItem
-        fields = ['envelope','headers','plain','html','reply_plain','attachments']
+        fields = ['envelope','headers','plain','html','reply_plain','attachments','user']
