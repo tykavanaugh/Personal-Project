@@ -1,9 +1,10 @@
 import React from 'react'
+import ReportDisplay from '../components/ReportDisplay'
 
 const UserHome = () => {
   return (
     <div>
-      <p>Placeholder logged in user homepage</p>
+      <ReportDisplay />
     </div>
   )
 }
