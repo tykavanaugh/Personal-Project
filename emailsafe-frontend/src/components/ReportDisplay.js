@@ -1,10 +1,32 @@
 import React from 'react'
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+import { BASE_URL, BASE_BACKEND } from '../globals'
 
 const ReportDisplay = (props) => {
-  const [openItem, setOpenItem] = useState('1')
+  const [openItem, setOpenItem] = useState('0')
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    if (localStorage.getItem('token') === null) {
+      window.location.replace(`${BASE_URL}login`);
+    } else {
+      fetch(`${BASE_BACKEND}auth/user/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          setUsername(data.username);
+          setLoading(false);
+        });
+    }
+  }, []);
+  
   const handleAccordionClick = (event) => {
     console.log(event.currentTarget.parentElement.id)
     setOpenItem(String(event.currentTarget.parentElement.id))
@@ -12,6 +34,7 @@ const ReportDisplay = (props) => {
 
   return (
     <>
+      <h1>{username}'s Reports</h1>
       <Accordion
         open={openItem}
         toggle={function noRefCheck(){}}
