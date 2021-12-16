@@ -3,7 +3,7 @@ import { Accordion } from 'reactstrap'
 import { useState,useEffect } from 'react'
 import { BASE_URL, BASE_BACKEND } from '../globals'
 import { fetchCurrentUser, fetchUserReports } from '../api/DjangoAPI'
-import ReportList from './ReportList'
+import Report from './Report'
 
 const ReportDisplay = (props) => {
   const [openItem, setOpenItem] = useState('0')
@@ -36,7 +36,7 @@ const ReportDisplay = (props) => {
         });
     }
     getEmail()
-  }, []);
+  }, [openItem]);
 
   const handleAccordionClick = (event) => {
     setOpenItem(String(event.currentTarget.parentElement.id))
@@ -52,7 +52,7 @@ const ReportDisplay = (props) => {
         toggle={function noRefCheck(){}}
         className='mx-3'
       >
-        <ReportList reports={userReports} handleClick={handleAccordionClick} />
+        {Array.from(userReports).map((report,index) => <Report reportID={`${index}`} reportObject={report} handleClick={handleAccordionClick}/>)}
       </Accordion>
     </>
   )
