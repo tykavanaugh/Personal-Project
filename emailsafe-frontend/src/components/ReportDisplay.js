@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react'
 import { BASE_URL, BASE_BACKEND } from '../globals'
 import { fetchCurrentUser, fetchUserReports } from '../api/DjangoAPI'
 import Report from './Report'
+import {TARGET_EMAIL} from '../globals'
 
 const ReportDisplay = (props) => {
   const [openItem, setOpenItem] = useState('0')
@@ -47,6 +48,10 @@ const ReportDisplay = (props) => {
   return (
     <>
       <h1>{username}'s Reports</h1>
+      <h6>
+      <p>Forward your suspcious emails to:</p> 
+      <code>{TARGET_EMAIL}</code>
+      </h6>
       <Accordion
         open={openItem}
         toggle={function noRefCheck(){}}

@@ -19,7 +19,7 @@ const Report = ({reportID,reportObject,handleClick}) => {
               <dd> <strong>Subject:</strong> <p>{reportObject.headers.subject}</p></dd>
               <dd> <strong>Plaintext body: </strong> <p>{reportObject.plain}</p></dd>
               <dd>{ reportObject ? <p>Attachment found</p> : <p>No attachment found</p> }</dd>
-              <dt><h3>Report</h3></dt>
+              <dt><h3>Report Contents</h3></dt>
               <dd></dd>
             </dl>
             
