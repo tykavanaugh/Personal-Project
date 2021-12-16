@@ -34,7 +34,10 @@ class EmailItem(models.Model):
 
     def save(self):
         self.sender = self.extractSender()
-        self.user = User.objects.get(email=self.sender)
+        try:
+            self.user = User.objects.get(email=self.sender)
+        except:
+            pass
         super(EmailItem, self).save()
     
 

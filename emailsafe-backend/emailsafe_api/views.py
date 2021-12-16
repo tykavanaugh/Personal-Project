@@ -17,15 +17,6 @@ class CurrentUserView(APIView):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
-class UserReportsView(APIView):
-    def get(self, request):
-        user_serializer = UserSerializer(request.user)
-        userEmailAddress = user_serializer.data['email']
-        all_emails = EmailItem.objects.get(sender=userEmailAddress)
-        
-        
-        return Response(serializer.data)
-
 # Create your views here.
 
 class EmailItemViewSet(viewsets.ModelViewSet):

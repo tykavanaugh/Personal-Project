@@ -25,7 +25,7 @@ export const fetchCurrentUser = async () => {
 }
 
 export const fetchUserReports = async () => {
-  const url = `${BASE_BACKEND}current_user`
+  const url = `${BASE_BACKEND}email`
   return await tryCatchFetch(url)
 }
 

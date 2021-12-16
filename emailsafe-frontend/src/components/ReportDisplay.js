@@ -1,19 +1,20 @@
 import React from 'react'
-import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
+import { Accordion } from 'reactstrap'
 import { useState,useEffect } from 'react'
 import { BASE_URL, BASE_BACKEND } from '../globals'
-import { fetchCurrentUser } from '../api/DjangoAPI'
+import { fetchCurrentUser, fetchUserReports } from '../api/DjangoAPI'
+import Report from './Report'
 
 const ReportDisplay = (props) => {
   const [openItem, setOpenItem] = useState('0')
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
+  const [userReports, setUserReports] = useState({});
 
   useEffect(() => {
     const getEmail = async () => {
-      const data = await fetchCurrentUser()
-      console.log(data)
-      console.log(data.email)
+      const data = await fetchUserReports()
+      setUserReports(data)
     }
     if (localStorage.getItem('token') === null) {
       window.location.replace(`${BASE_URL}login`);
@@ -37,7 +38,6 @@ const ReportDisplay = (props) => {
   const handleAccordionClick = (event) => {
     setOpenItem(String(event.currentTarget.parentElement.id))
   }
-
   return (
     <>
       <h1>{username}'s Reports</h1>
@@ -46,48 +46,7 @@ const ReportDisplay = (props) => {
         toggle={function noRefCheck(){}}
         className='mx-3'
       >
-        <AccordionItem id='1'>
-          <AccordionHeader targetId="1" onClick={(event) => handleAccordionClick(event)}>
-            Accordion Item 1
-          </AccordionHeader>
-          <AccordionBody accordionId="1">
-            <strong>
-              This is the first item's accordion body.
-            </strong>
-            <code>
-              .accordion-body
-            </code>
-            , though the transition does limit overflow.
-          </AccordionBody>
-        </AccordionItem>
-        <AccordionItem id='2'>
-          <AccordionHeader targetId="2" onClick={(event) => handleAccordionClick(event)}>
-            Accordion Item 2
-          </AccordionHeader>
-          <AccordionBody accordionId="2">
-            <strong>
-              This is the first item's accordion body.
-            </strong>
-            <code>
-              .accordion-body
-            </code>
-            , though the transition does limit overflow.
-          </AccordionBody>
-        </AccordionItem>
-        <AccordionItem id='3'>
-          <AccordionHeader targetId="3" onClick={(event) => handleAccordionClick(event)}>
-            Accordion Item 3
-          </AccordionHeader>
-          <AccordionBody accordionId="3">
-            <strong>
-              This is the first item's accordion body.
-            </strong>
-            <code>
-              .accordion-body
-            </code>
-            , though the transition does limit overflow.
-          </AccordionBody>
-        </AccordionItem>
+        {Array.from(userReports).map((item,index) => {<Report reportID={index} reportObject={item} handleClick={handleAccordionClick}/>})}
       </Accordion>
     </>
   )
