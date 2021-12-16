@@ -10,11 +10,15 @@ const ReportDisplay = (props) => {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
   const [userReports, setUserReports] = useState({});
+  const [gotReports, setGotReports] = useState(false);
 
   useEffect(() => {
     const getEmail = async () => {
       const data = await fetchUserReports()
       setUserReports(data)
+      console.log(data)
+      data.map(item => {console.log(item)})
+      setGotReports(true)
     }
     if (localStorage.getItem('token') === null) {
       window.location.replace(`${BASE_URL}login`);
@@ -38,6 +42,9 @@ const ReportDisplay = (props) => {
   const handleAccordionClick = (event) => {
     setOpenItem(String(event.currentTarget.parentElement.id))
   }
+
+  
+  
   return (
     <>
       <h1>{username}'s Reports</h1>
@@ -46,7 +53,7 @@ const ReportDisplay = (props) => {
         toggle={function noRefCheck(){}}
         className='mx-3'
       >
-        {Array.from(userReports).map((item,index) => {<Report reportID={index} reportObject={item} handleClick={handleAccordionClick}/>})}
+        {userReports && Array.from(userReports).map((item,index) => {<Report reportID={index} reportObject={item} handleClick={handleAccordionClick}/>})}
       </Accordion>
     </>
   )

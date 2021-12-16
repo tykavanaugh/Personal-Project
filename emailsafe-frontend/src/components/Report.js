@@ -1,5 +1,7 @@
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
 const Report = ({reportID,reportObject,handleClick}) => {
+  console.log(reportID)
+  console.log(reportObject)
   return (
     <>
       <AccordionItem id={reportID}>
