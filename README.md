@@ -28,3 +28,8 @@ https://www.programmableweb.com/api/google-safe-browsing-rest-api
 
 https://phishtank.org/api_info.php
 
+Cloud mail in setup
+
+heroku addons:add cloudmailin
+
+Set target to api/email endpoint and format to json

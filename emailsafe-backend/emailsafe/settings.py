@@ -31,7 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['http://localhost:3000/']
 CORS_ALLOWED_ORIGINS = [    
-'http://localhost:3000'
+'http://localhost:3000',
+'https://emailsafe-frontend.herokuapp.com/',
+'https://www.cloudmailin.com',
 ]
 
 
@@ -65,9 +67,9 @@ ACCOUNT_UNIQUE_EMAIL = False
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', 
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -154,23 +156,22 @@ AUTHENTICATION_BACKENDS = (    "django.contrib.auth.backends.ModelBackend",    "
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA':datetime.timedelta(days=2),
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_REFRESH_EXPIRATION_DELTA':datetime.timedelta(days=7),
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'emailsafe.utils.my_jwt_response_handler',
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         
     ),
 }
 
+CORS_ORIGIN_WHITELIST = [
+    'https://emailsafe-frontend.herokuapp.com/',
+    'https://www.cloudmailin.com',
+]
+
 django_heroku.settings(locals())
+

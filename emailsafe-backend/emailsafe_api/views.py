@@ -11,7 +11,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 
-
 #Views
 class CurrentUserView(APIView):
     def get(self, request):
@@ -19,9 +18,7 @@ class CurrentUserView(APIView):
         return Response(serializer.data)
 
 class EmailItemViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
     serializer_class = EmailItemSerializer
-    
     def get_queryset(self):
         return self.request.user.user_emails.all()
 
