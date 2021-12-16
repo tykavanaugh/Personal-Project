@@ -23,7 +23,7 @@ class EmailItem(models.Model):
     attachments = models.JSONField(default=dict,null=True,blank=True)
     
     def __str__(self):
-        return f"{self.plain}"
+        return f"From {self.sender} on {self.timestamp}"
 
     def extractSender(self):
         email = self.headers['from']
