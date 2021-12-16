@@ -53,7 +53,7 @@ const ReportDisplay = (props) => {
         toggle={function noRefCheck(){}}
         className='mx-3'
       >
-        {userReports && Array.from(userReports).map((item,index) => {<Report reportID={index} reportObject={item} handleClick={handleAccordionClick}/>})}
+        {Array.from(userReports).map((item,index) => {<Report reportID={index} reportObject={item} handleClick={handleAccordionClick}/>})}
       </Accordion>
     </>
   )
