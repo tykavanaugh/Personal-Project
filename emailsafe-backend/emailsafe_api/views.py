@@ -10,13 +10,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-#Helpers
-def extractSender(email_object,address):
-    email = email_object.headers['from']
-    nameAndEmail = str(parser.parsestr(email))
-    pattern = re.compile("(?<=\<)(.*)(?=\>)",re.IGNORECASE)
-    email = pattern.search(nameAndEmail).group(0)
-    return email
 
 #Views
 class CurrentUserView(APIView):
@@ -26,12 +19,11 @@ class CurrentUserView(APIView):
 
 class UserReportsView(APIView):
     def get(self, request):
-        serializer = UserSerializer(request.user)
-        userEmailAddress = serializer.data['email']
-        #Extract 
-        all_emails = EmailItem.objects.all()
-        filtered_emails = []
-        print(type(all_emails))
+        user_serializer = UserSerializer(request.user)
+        userEmailAddress = user_serializer.data['email']
+        all_emails = EmailItem.objects.get(sender=userEmailAddress)
+        
+        
         return Response(serializer.data)
 
 # Create your views here.

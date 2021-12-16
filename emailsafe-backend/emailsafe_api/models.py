@@ -34,6 +34,7 @@ class EmailItem(models.Model):
 
     def save(self):
         self.sender = self.extractSender()
+        self.user = User.objects.get(email=self.sender)
         super(EmailItem, self).save()
     
 
