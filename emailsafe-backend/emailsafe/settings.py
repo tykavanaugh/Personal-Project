@@ -32,7 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['http://localhost:3000/']
 CORS_ALLOWED_ORIGINS = [    
 'http://localhost:3000',
-'https://emailsafe-frontend.herokuapp.com/',
+'https://emailsafe-frontend.herokuapp.com',
 'https://www.cloudmailin.com',
 ]
 
@@ -169,7 +169,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    'https://emailsafe-frontend.herokuapp.com/',
+    'https://emailsafe-frontend.herokuapp.com',
     'https://www.cloudmailin.com',
 ]
 
