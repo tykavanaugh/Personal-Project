@@ -3,6 +3,7 @@ import { BASE_URL, BASE_BACKEND } from '../globals'
 
 const Signup = () => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [errors, setErrors] = useState(false);
@@ -21,6 +22,7 @@ const Signup = () => {
 
     const user = {
       username: username,
+      email:email,
       password1: password1,
       password2: password2
     };
@@ -40,6 +42,7 @@ const Signup = () => {
           window.location.replace(`${BASE_URL}userhome`);
         } else {
           setUsername('');
+          setEmail('');
           setPassword1('');
           setPassword2('');
           localStorage.clear();
@@ -59,6 +62,15 @@ const Signup = () => {
           type='username'
           value={username}
           onChange={event => setUsername(event.target.value)}
+          required
+        />{' '}
+        <br />
+        <label htmlFor='email'>Email:</label> <br />
+        <input
+          name='email'
+          type='email'
+          value={email}
+          onChange={event => setEmail(event.target.value)}
           required
         />{' '}
         <br />

@@ -17,4 +17,4 @@ class EmailItemSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(default=serializers.CurrentUserDefault())
     class Meta:
         model = EmailItem
-        fields = ['envelope','headers','plain','html','reply_plain','attachments','user']
+        fields = ['timestamp','envelope','headers','plain','html','reply_plain','attachments','user']

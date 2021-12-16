@@ -66,7 +66,7 @@ const MainNavbar = () => {
                     Account Info
                   </DropdownItem>
                   <DropdownItem>
-                    Add Emails
+                    Register Email
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
@@ -83,10 +83,10 @@ const MainNavbar = () => {
           >
           </Nav>
           <Nav>
-            <NavItem>
+            <NavItem className='mx-3'>
                 <Link to='/login' style={navbarLinkStyle} >Login</Link>
             </NavItem>
-            <NavItem>
+            <NavItem className='mx-3'>
                 <Link to='/signup' style={navbarLinkStyle} >Signup</Link>
             </NavItem>
           </Nav>
