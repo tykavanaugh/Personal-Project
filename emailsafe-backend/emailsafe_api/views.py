@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 
 
 #Views
@@ -18,6 +18,7 @@ class CurrentUserView(APIView):
         return Response(serializer.data)
 
 class EmailItemViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     serializer_class = EmailItemSerializer
     def get_queryset(self):
         return self.request.user.user_emails.all()

@@ -12,4 +12,6 @@ urlpatterns = [
 
 router.register(r"email",EmailItemViewSet,basename="email")
 
+
+
 urlpatterns += router.urls

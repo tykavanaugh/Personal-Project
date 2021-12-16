@@ -32,7 +32,7 @@ class EmailItem(models.Model):
         email = pattern.search(nameAndEmail).group(0)
         return email
 
-    def save(self):
+    def create(self):
         self.sender = self.extractSender()
         try:
             self.user = User.objects.get(email=self.sender)
