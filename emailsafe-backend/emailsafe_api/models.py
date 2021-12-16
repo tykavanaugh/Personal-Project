@@ -15,12 +15,12 @@ class EmailItem(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_emails',null=True,blank=True)
     sender = models.CharField(max_length=1000,null=True,blank=True)
     timestamp = models.DateTimeField(default = now())
-    envelope = models.JSONField(default=dict,null=True)
-    headers = models.JSONField(default=dict,null=True)
-    plain = models.JSONField(default=dict,null=True)
-    html = models.JSONField(default=dict,null=True)
-    reply_plain = models.JSONField(default=dict,null=True)
-    attachments = models.JSONField(default=dict,null=True)
+    envelope = models.JSONField(default=dict,null=True,blank=True)
+    headers = models.JSONField(default=dict,null=True,blank=True)
+    plain = models.JSONField(default=dict,null=True,blank=True)
+    html = models.JSONField(default=dict,null=True,blank=True)
+    reply_plain = models.JSONField(default=dict,null=True,blank=True)
+    attachments = models.JSONField(default=dict,null=True,blank=True)
     
     def __str__(self):
         return f"{self.plain}"
@@ -32,7 +32,7 @@ class EmailItem(models.Model):
         email = pattern.search(nameAndEmail).group(0)
         return email
 
-    def create(self):
+    def save(self):
         self.sender = self.extractSender()
         try:
             self.user = User.objects.get(email=self.sender)
