@@ -2,7 +2,7 @@ import React from 'react'
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
 import { useState,useEffect } from 'react'
 import { BASE_URL, BASE_BACKEND } from '../globals'
-import { fetchEmail } from '../api/DjangoAPI'
+import { fetchCurrentUser } from '../api/DjangoAPI'
 
 const ReportDisplay = (props) => {
   const [openItem, setOpenItem] = useState('0')
@@ -11,8 +11,9 @@ const ReportDisplay = (props) => {
 
   useEffect(() => {
     const getEmail = async () => {
-      const data = await fetchEmail()
+      const data = await fetchCurrentUser()
       console.log(data)
+      console.log(data.email)
     }
     if (localStorage.getItem('token') === null) {
       window.location.replace(`${BASE_URL}login`);

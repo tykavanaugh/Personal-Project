@@ -19,7 +19,12 @@ export const tryCatchFetch = async (url, init=null) => {
   }
 }
 
-export const fetchEmail = async () => {
+export const fetchCurrentUser = async () => {
+  const url = `${BASE_BACKEND}current_user`
+  return await tryCatchFetch(url)
+}
+
+export const fetchUserReports = async () => {
   const url = `${BASE_BACKEND}current_user`
   return await tryCatchFetch(url)
 }
