@@ -2,6 +2,7 @@ import React from 'react'
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
 import { useState,useEffect } from 'react'
 import { BASE_URL, BASE_BACKEND } from '../globals'
+import { fetchEmail } from '../api/DjangoAPI'
 
 const ReportDisplay = (props) => {
   const [openItem, setOpenItem] = useState('0')
@@ -9,6 +10,10 @@ const ReportDisplay = (props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const getEmail = async () => {
+      const data = await fetchEmail()
+      console.log(data)
+    }
     if (localStorage.getItem('token') === null) {
       window.location.replace(`${BASE_URL}login`);
     } else {
@@ -25,8 +30,9 @@ const ReportDisplay = (props) => {
           setLoading(false);
         });
     }
+    getEmail()
   }, []);
-  
+
   const handleAccordionClick = (event) => {
     setOpenItem(String(event.currentTarget.parentElement.id))
   }
