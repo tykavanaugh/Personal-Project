@@ -6,7 +6,7 @@ const Report = ({reportID,reportObject,handleClick}) => {
       <AccordionItem id={(reportID)}>
           <AccordionHeader targetId={(reportID)} onClick={(event) => handleClick(event)}>
             <h4>
-                Report {(reportID)}
+                Report {reportObject.timestamp}
             </h4>
           </AccordionHeader>
           <AccordionBody accordionId={(reportID)}>

@@ -57,7 +57,7 @@ const ReportDisplay = (props) => {
         toggle={function noRefCheck(){}}
         className='mx-3'
       >
-        {Array.from(userReports).reverse.map((report,index) => <Report reportID={`${index}`} reportObject={report} handleClick={handleAccordionClick}/>)}
+        {Array.from(userReports).slice(0).reverse().map((report,index) => <Report reportID={`${index}`} reportObject={report} handleClick={handleAccordionClick}/>)}
       </Accordion>
     </>
   )
