@@ -43,8 +43,7 @@ const ReportDisplay = (props) => {
     setOpenItem(String(event.currentTarget.parentElement.id))
   }
 
-  
-  
+
   return (
     <>
       <h1>{username}'s Reports</h1>

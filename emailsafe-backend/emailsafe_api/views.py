@@ -11,13 +11,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 
+
 #Views
 class CurrentUserView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
-
-# Create your views here.
 
 class EmailItemViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
