@@ -24,5 +24,6 @@ class EmailItemViewSet(viewsets.ModelViewSet):
         return self.request.user.user_emails.all()
 
 
+
     
 
