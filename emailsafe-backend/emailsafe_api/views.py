@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated,AllowAny
+from django.http import HttpResponse
 
 
 #Views
@@ -22,7 +23,6 @@ class EmailItemViewSet(viewsets.ModelViewSet):
     serializer_class = EmailItemSerializer
     def get_queryset(self):
         return self.request.user.user_emails.all()
-
 
 
     
