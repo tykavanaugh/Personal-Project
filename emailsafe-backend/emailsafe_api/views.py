@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.http import HttpResponse
+from .virustotalAPI import scan_attachment
 
 
 #Views
@@ -19,6 +20,7 @@ class CurrentUserView(APIView):
         return Response(serializer.data)
 
 class EmailItemViewSet(viewsets.ModelViewSet):
+    print(scan_attachment(3))
     permission_classes = (AllowAny,)
     serializer_class = EmailItemSerializer
     def get_queryset(self):
