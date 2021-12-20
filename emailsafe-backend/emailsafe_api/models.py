@@ -35,10 +35,8 @@ class EmailItem(models.Model):
 
     def extractOGSender(self):
         body = self.plain
-        print(body)
         pattern = re.compile("(?<=\<)(.*)(?=\>)",re.IGNORECASE)
         email = pattern.search(body).group(0)
-        print(email)
         return email
 
     def extractSender(self):
@@ -96,13 +94,18 @@ class Report(models.Model):
     attachment_report = models.JSONField(default=dict,null=True,blank=True)
     sender_email = models.CharField(max_length=1000,default="",null=True,blank=True)
     sender_domain = models.CharField(max_length=1000,default="",null=True,blank=True)
+    domain_report = models.JSONField(default=dict,null=True,blank=True)
 
     def get_domain_report(self):
-        pass
+        vt_domain = virustotal3.core.Domains(VIRUSTOTAL_API_KEY)
+        result = vt_domain.info_domain(self.sender_domain)['data']['attributes']['last_analysis_stats']
+        return result
     
     def __str__(self):
         return(f'{self.pk}: Report for: {self.parent_email}')
 
     def save(self,*args,**kwargs):
         self.sender_domain = self.sender_domain = self.sender_email[self.sender_email.find("@")+1:]
+        if "@" in self.sender_email:
+            self.domain_report = self.get_domain_report()
         super(Report, self).save()
