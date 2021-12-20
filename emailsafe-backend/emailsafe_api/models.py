@@ -33,6 +33,14 @@ class EmailItem(models.Model):
     def __str__(self):
         return f"{self.id}: From {self.sender} on {self.timestamp}"
 
+    def extractOGSender(self):
+        body = self.plain
+        print(body)
+        pattern = re.compile("(?<=\<)(.*)(?=\>)",re.IGNORECASE)
+        email = pattern.search(body).group(0)
+        print(email)
+        return email
+
     def extractSender(self):
         email = self.headers['from']
         nameAndEmail = str(parser.parsestr(email))
@@ -51,8 +59,10 @@ class EmailItem(models.Model):
         vt_files = virustotal3.core.Files(VIRUSTOTAL_API_KEY)
         report_result = vt_files.upload(f"./tmp/{email_item}.txt")
         results = virustotal3.core.get_analysis(VIRUSTOTAL_API_KEY,report_result['data']['id'])
-        return (results['data']['attributes']['stats'])
+        os.system('rm -r ./tmp/*')
+        return (results['data']['attributes']['stats'])    
 
+    #All interaction with virustotal API in here
     def save(self, *args, **kwargs):
         self.sender = self.extractSender()
         #delete existing
@@ -62,10 +72,14 @@ class EmailItem(models.Model):
         except:
             pass
         report = Report(parent_email = self)
-        #scan report if exists
+        #scan attachment report if exists
         try:
             report.attachment_report = self.scan_attachment()
-            report.attachment_missing = False
+        except:
+            pass
+        #extract sender from body
+        try:
+            report.sender_email = self.extractOGSender()
         except:
             pass
         report.save()
@@ -80,7 +94,15 @@ class EmailItem(models.Model):
 class Report(models.Model):
     parent_email = models.OneToOneField(EmailItem,on_delete=CASCADE,related_name="report")
     attachment_report = models.JSONField(default=dict,null=True,blank=True)
-    attachment_missing = models.BooleanField(default=True,blank=True,null=True)
+    sender_email = models.CharField(max_length=1000,default="",null=True,blank=True)
+    sender_domain = models.CharField(max_length=1000,default="",null=True,blank=True)
+
+    def get_domain_report(self):
+        pass
     
     def __str__(self):
-        return(f'{self.attachment_report}')
+        return(f'{self.pk}: Report for: {self.parent_email}')
+
+    def save(self,*args,**kwargs):
+        self.sender_domain = self.sender_domain = self.sender_email[self.sender_email.find("@")+1:]
+        super(Report, self).save()
