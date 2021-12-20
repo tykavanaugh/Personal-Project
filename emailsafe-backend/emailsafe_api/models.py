@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE, SET_DEFAULT
 from django.utils.timezone import now
+import os
+import virustotal3.core
+import json
+from emailsafe.APIKEYS import VIRUSTOTAL_API_KEY
 
 from email import parser
 import re
@@ -9,6 +13,9 @@ import re
 from email.parser import HeaderParser
 from email.utils import parseaddr
 parser = HeaderParser()
+
+#Helpers API functions
+
 
 # Create your models here.
 
@@ -33,14 +40,44 @@ class EmailItem(models.Model):
         email = pattern.search(nameAndEmail).group(0)
         return email
 
+    def scan_attachment(self):
+        email_item = self
+        attachments = email_item.attachments
+        attachment_raw = ""
+        for attachment in attachments:
+            attachment_raw += str(attachment['content'])
+        with open(f"./tmp/{email_item}.txt","w") as file:
+            file.write(attachment_raw)
+        vt_files = virustotal3.core.Files(VIRUSTOTAL_API_KEY)
+        report_result = vt_files.upload(f"./tmp/{email_item}.txt")
+        results = virustotal3.core.get_analysis(VIRUSTOTAL_API_KEY,report_result['data']['id'])
+        return (results['data']['attributes']['stats'])
+
     def save(self, *args, **kwargs):
         self.sender = self.extractSender()
+        #delete existing
+        try:
+            if self.report:
+                Report.objects.get(pk=self.report.pk).delete()
+        except:
+            pass
+        report = Report(parent_email = self)
+        #scan report if exists
+        try:
+            report.attachment_report = self.scan_attachment()
+            report.attachment_missing = False
+        except:
+            pass
+        report.save()
         try:
             self.user = User.objects.get(email=self.sender)
         except:
             pass
         super(EmailItem, self).save()
+
+    
     
 class Report(models.Model):
-    parent_email = models.ForeignKey(EmailItem,on_delete=CASCADE,related_name="report")
+    parent_email = models.OneToOneField(EmailItem,on_delete=CASCADE,related_name="report")
     attachment_report = models.JSONField(default=dict,null=True,blank=True)
+    attachment_missing = models.BooleanField(default=True,blank=True,null=True)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EmailItem
+from .models import EmailItem,Report
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
@@ -9,4 +9,5 @@ from .models import User
 # Register your models here.
 
 admin.site.register(EmailItem)
+admin.site.register(Report)
 
