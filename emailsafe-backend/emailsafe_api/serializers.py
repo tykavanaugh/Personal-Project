@@ -18,3 +18,4 @@ class EmailItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailItem
         fields = ['envelope','headers','plain','html','reply_plain','attachments','user']
+

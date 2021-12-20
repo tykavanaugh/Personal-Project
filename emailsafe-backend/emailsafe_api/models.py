@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE, SET_DEFAULT
 from django.utils.timezone import now
 
 from email import parser
@@ -40,3 +41,6 @@ class EmailItem(models.Model):
             pass
         super(EmailItem, self).save()
     
+class Report(models.Model):
+    parent_email = models.ForeignKey(EmailItem,on_delete=CASCADE,related_name="report")
+    attachment_report = models.JSONField(default=dict,null=True,blank=True)

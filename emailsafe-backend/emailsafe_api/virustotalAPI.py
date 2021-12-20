@@ -25,5 +25,5 @@ def scan_attachment(primary_key):
     vt_files = virustotal3.core.Files(VIRUSTOTAL_API_KEY)
     report_result = vt_files.upload(f"./tmp/{email_item}.txt")
     results = virustotal3.core.get_analysis(VIRUSTOTAL_API_KEY,report_result['data']['id'])
-    return (results)
+    return (results['data']['attributes']['stats'])
 
