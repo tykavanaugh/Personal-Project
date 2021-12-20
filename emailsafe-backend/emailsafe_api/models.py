@@ -81,3 +81,6 @@ class Report(models.Model):
     parent_email = models.OneToOneField(EmailItem,on_delete=CASCADE,related_name="report")
     attachment_report = models.JSONField(default=dict,null=True,blank=True)
     attachment_missing = models.BooleanField(default=True,blank=True,null=True)
+    
+    def __str__(self):
+        return(f'{self.attachment_report}')
