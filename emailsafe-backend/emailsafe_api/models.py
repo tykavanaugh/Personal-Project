@@ -86,8 +86,7 @@ class EmailItem(models.Model):
         except:
             pass
         super(EmailItem, self).save()
-
-    
+        
     
 class Report(models.Model):
     parent_email = models.OneToOneField(EmailItem,on_delete=CASCADE,related_name="report")
@@ -95,17 +94,30 @@ class Report(models.Model):
     sender_email = models.CharField(max_length=1000,default="",null=True,blank=True)
     sender_domain = models.CharField(max_length=1000,default="",null=True,blank=True)
     domain_report = models.JSONField(default=dict,null=True,blank=True)
+    is_phish_url = models.BooleanField(null=True,default=None)
 
     def get_domain_report(self):
         vt_domain = virustotal3.core.Domains(VIRUSTOTAL_API_KEY)
         result = vt_domain.info_domain(self.sender_domain)['data']['attributes']['last_analysis_stats']
         return result
+
+    def check_phishtank(self):
+        path="./database_offline/phishtank.json"
+        data = None
+        with open(path,'r') as jsonfile:
+            data = json.load(jsonfile)
+        for item in data:
+            if self.sender_domain in item["url"]:
+                return True
+        return False
     
     def __str__(self):
         return(f'{self.pk}: Report for: {self.parent_email}')
 
     def save(self,*args,**kwargs):
+        #pull reports that pull from domain/email address
         self.sender_domain = self.sender_domain = self.sender_email[self.sender_email.find("@")+1:]
         if "@" in self.sender_email:
             self.domain_report = self.get_domain_report()
+            self.is_phish_url = self.check_phishtank()
         super(Report, self).save()

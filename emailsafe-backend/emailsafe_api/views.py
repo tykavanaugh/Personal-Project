@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from rest_framework import serializers, viewsets
 from rest_framework import permissions
@@ -26,6 +27,4 @@ class EmailItemViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return self.request.user.user_emails.all()
 
-
-    
 
