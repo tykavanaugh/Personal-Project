@@ -16,14 +16,14 @@ class UserSerializer(serializers.ModelSerializer):
 class ReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Report
-        fields = ['pk','attachment_report']
+        fields = ['pk','sender_email','sender_domain','domain_report','attachment_report','is_phish_url']
 
 class EmailItemSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(default=serializers.CurrentUserDefault())
     report = ReportSerializer()
     class Meta:
         model = EmailItem
-        fields = ['pk','envelope','headers','plain','html','reply_plain','attachments','user','report']
+        fields = ['pk','timestamp','envelope','headers','plain','html','reply_plain','attachments','user','report']
 
 
 

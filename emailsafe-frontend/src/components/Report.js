@@ -1,12 +1,13 @@
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
 const Report = ({reportID,reportObject,handleClick}) => {
+  //console.log(reportObject)
   console.log(reportObject)
   return (
     <>
       <AccordionItem id={(reportID)}>
           <AccordionHeader targetId={(reportID)} onClick={(event) => handleClick(event)}>
             <h4>
-                Report {reportObject.timestamp}
+                <b>Report</b> {reportObject.report ? <>{reportObject.report.sender_domain} </>: <> Unknown domain </>}
             </h4>
           </AccordionHeader>
           <AccordionBody accordionId={(reportID)}>
