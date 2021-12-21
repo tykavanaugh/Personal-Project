@@ -1,27 +1,21 @@
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from 'reactstrap'
+import ReportDetail from "./ReportDetail"
+import SummaryDetail from "./SummaryDetail"
+
 const Report = ({reportID,reportObject,handleClick}) => {
-  //console.log(reportObject)
-  console.log(reportObject)
   return (
     <>
       <AccordionItem id={(reportID)}>
           <AccordionHeader targetId={(reportID)} onClick={(event) => handleClick(event)}>
             <h4>
-                <b>Report</b> {reportObject.report ? <>{reportObject.report.sender_domain} </>: <> Unknown domain </>}
+                <b>Report- {reportObject.pk}</b> {reportObject.report ? <>{reportObject.report.sender_domain} </>: <> Unknown domain </>}
             </h4>
           </AccordionHeader>
           <AccordionBody accordionId={(reportID)}>
             <dl className="text-start">
-              <dt>
-                
-              </dt>
-              <dt>Email summary</dt>
-              <dd> <strong>Sender:</strong> <p>{reportObject.headers.from}</p> </dd>
-              <dd> <strong>Subject:</strong> <p>{reportObject.headers.subject}</p></dd>
-              <dd> <strong>Plaintext body: </strong> <p>{reportObject.plain}</p></dd>
-              <dd>{ reportObject ? <p>Attachment found</p> : <p>No attachment found</p> }</dd>
-              <dt><h3>Report Contents</h3></dt>
-              <dd></dd>
+              <ReportDetail reportObject={reportObject}/>
+              <hr/>
+              <SummaryDetail reportObject={reportObject}/>
             </dl>
             
             
