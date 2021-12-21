@@ -14,6 +14,8 @@ from pathlib import Path
 import datetime
 import django_heroku
 
+from .APIKEYS import SECRET_DJANGO_KEY
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,16 +25,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0a7ao01iejrw&&lrifd3nm2h3ru7&2%m)i=8)5yud9=!6zr8ic'
+SECRET_KEY = SECRET_DJANGO_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['http://localhost:3000/']
-CORS_ALLOWED_ORIGINS = [    
+
+#!SETUP- ENSURE FRONT END URL INCLUDED IN LIST
+CORS_ALLOWED_ORIGINS = [ 
 'http://localhost:3000',
 'https://emailsafe-frontend.herokuapp.com',
 'https://www.cloudmailin.com',
+#Your URL HERE
 ]
 
 

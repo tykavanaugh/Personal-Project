@@ -22,7 +22,7 @@ const ReportDetail = ({reportObject}) => {
   
   const renderDomainReport = (arrayReport) => {
     if (Object.keys(arrayReport).length < 1){
-      return (<div>No Attachment Found</div>)
+      return (<div>No Sender Domain Provided</div>)
     }
     const score = scoreArray
     score['harmless'] += arrayReport.harmless

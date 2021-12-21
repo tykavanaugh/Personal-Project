@@ -1,4 +1,5 @@
 from django.db import models
+import django
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE, SET_DEFAULT
 from django.utils.timezone import now
@@ -22,7 +23,7 @@ parser = HeaderParser()
 class EmailItem(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_emails',null=True,blank=True)
     sender = models.CharField(max_length=1000,null=True,blank=True)
-    timestamp = models.DateTimeField(default = now())
+    timestamp = models.DateField(default=django.utils.timezone.now)
     envelope = models.JSONField(default=dict,null=True,blank=True)
     headers = models.JSONField(default=dict,null=True,blank=True)
     plain = models.JSONField(default=dict,null=True,blank=True)
