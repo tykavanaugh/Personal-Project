@@ -33,30 +33,25 @@ Add your frontend URL to CORS_ALLOWED_ORIGINS
 Go to the file "RENAME_ME_DURING_SETUP" and follow the directions in there
 
 Push to heroku project:
-
+```bash
 heroku git:remote -a {app_name}
-
-## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Setup Cloud Mail-in for heroku
 
-Please make sure to update tests as appropriate.
+Frontend
 
-https://www.makeareadme.com/
+Go to src/globals.js and change the urls to match your own.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Replace the email with the email on Cloud Mail-in
+
+
+## Notes
+
+Thank you everyone in Code Platoon and the papa cohort!
+
+This app uses Cloud Mail-in, VirusTotal, and CheckPhish APIs. 
+
+Due to it's small database size and the current restrictions on API use on CheckPhish, the CheckPhish database is stored in it's entirety locally
+
+

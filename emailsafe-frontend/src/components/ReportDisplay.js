@@ -67,6 +67,7 @@ const ReportDisplay = (props) => {
       >
         {Array.from(userReports).slice(0).reverse().map((report,index) => <Report key= {index} reportID={`${index}`} reportObject={report} handleClick={handleAccordionClick}/>)}
       </Accordion>
+      <div>&emsp;</div>
     </>
   )
 }
