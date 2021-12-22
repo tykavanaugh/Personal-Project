@@ -20,10 +20,10 @@ class ReportSerializer(serializers.ModelSerializer):
 
 class EmailItemSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(default=serializers.CurrentUserDefault())
-    report = ReportSerializer()
+    report = ReportSerializer(required=False)
     class Meta:
         model = EmailItem
-        fields = ['pk','timestamp','envelope','headers','plain','html','reply_plain','attachments','user','report']
+        fields = ['pk','envelope','headers','plain','html','reply_plain','attachments','user','report']
 
 
 

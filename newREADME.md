@@ -32,6 +32,9 @@ Add your frontend URL to CORS_ALLOWED_ORIGINS
 
 Go to the file "RENAME_ME_DURING_SETUP" and follow the directions in there
 
+Push to heroku project:
+
+heroku git:remote -a {app_name}
 
 ## Usage
 

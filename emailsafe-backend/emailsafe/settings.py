@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import datetime
 import django_heroku
-
 from .APIKEYS import SECRET_DJANGO_KEY
 
 
@@ -39,6 +38,12 @@ CORS_ALLOWED_ORIGINS = [
 'https://emailsafe-frontend.herokuapp.com',
 'https://www.cloudmailin.com',
 #Your URL HERE
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'https://emailsafe-frontend.herokuapp.com',
+    'https://www.cloudmailin.com',
 ]
 
 

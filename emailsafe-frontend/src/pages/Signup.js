@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL, BASE_BACKEND } from '../globals'
+import { Button } from 'reactstrap'
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ const Signup = () => {
     }
   }, []);
 
-  const onSubmit = event => {
+  const onFormSubmit = event => {
     event.preventDefault();
 
     const user = {
@@ -55,7 +56,7 @@ const Signup = () => {
     <div>
       {loading === false && <h1>Signup</h1>}
       {errors === true && <h2>Cannot signup with provided credentials</h2>}
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onFormSubmit}>
         <label htmlFor='username'>Username:</label> <br />
         <input
           name='username'
@@ -92,7 +93,9 @@ const Signup = () => {
           required
         />{' '}
         <br />
-        <input type='submit' value='Signup' />
+        <Button className="px-5 m-3" type="submit">   
+            Signup
+        </Button>
       </form>
     </div>
   );

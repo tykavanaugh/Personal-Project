@@ -2,7 +2,7 @@ from django.db import models
 import django
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE, SET_DEFAULT
-from django.utils.timezone import now
+from django.utils import timezone
 import os
 import virustotal3.core
 import json
@@ -23,7 +23,7 @@ parser = HeaderParser()
 class EmailItem(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_emails',null=True,blank=True)
     sender = models.CharField(max_length=1000,null=True,blank=True)
-    timestamp = models.DateField(default=django.utils.timezone.now)
+    timestamp = models.DateTimeField(default=timezone.now)
     envelope = models.JSONField(default=dict,null=True,blank=True)
     headers = models.JSONField(default=dict,null=True,blank=True)
     plain = models.JSONField(default=dict,null=True,blank=True)
@@ -81,16 +81,16 @@ class EmailItem(models.Model):
             report.sender_email = self.extractOGSender()
         except:
             pass
-        report.save()
         try:
             self.user = User.objects.get(email=self.sender)
         except:
             pass
         super(EmailItem, self).save()
+        report.save()
         
     
 class Report(models.Model):
-    parent_email = models.OneToOneField(EmailItem,on_delete=CASCADE,related_name="report")
+    parent_email = models.OneToOneField(EmailItem,on_delete=CASCADE,related_name="report",null=True,blank=True)
     attachment_report = models.JSONField(default=dict,null=True,blank=True)
     sender_email = models.CharField(max_length=1000,default="",null=True,blank=True)
     sender_domain = models.CharField(max_length=1000,default="",null=True,blank=True)
