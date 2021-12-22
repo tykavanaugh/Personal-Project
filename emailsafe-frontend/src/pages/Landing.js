@@ -1,6 +1,7 @@
 import React from 'react'
-import { Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap'
+import { Card, CardBody, CardFooter, CardSubtitle, CardText, CardTitle } from 'reactstrap'
 import Spinner from '../components/Spinner'
+import { BsGithub } from 'react-icons/bs'
 
 const Landing = () => {
   return (
@@ -21,6 +22,9 @@ const Landing = () => {
             <hr />
             <p className="fw-lighter">EmailSafe primarily uses data from VirusTotal and CheckPhish</p>
           </CardSubtitle>
+          <CardFooter>
+            <BsGithub/>
+          </CardFooter>
         </CardBody>
       </Card>
     </div>

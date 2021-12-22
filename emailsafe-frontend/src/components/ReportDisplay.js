@@ -53,7 +53,7 @@ const ReportDisplay = (props) => {
             <h1>{username}'s Reports</h1>
           </CardTitle>
           <CardSubtitle>
-            <p>Forward your suspcious emails to:</p> 
+            <p>Forward your suspicious emails to:</p> 
           </CardSubtitle>
           <CardText>
             <code className="text-light fs-5">{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <div><Button color="light" className="m-2" outline>Copy</Button></div></Clipboard>
