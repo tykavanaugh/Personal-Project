@@ -47,11 +47,13 @@ const ReportDisplay = (props) => {
 
   return (
     <>
-      <h1>{username}'s Reports</h1>
-      <h6>
-      <p>Forward your suspcious emails to:</p> 
-      <code>{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <Button color="dark" outline>Copy</Button></Clipboard>
-      </h6>
+      <div className="bg-light bg-gradient">
+        <h1>{username}'s Reports</h1>
+        <h6>
+        <p>Forward your suspcious emails to:</p> 
+        <code>{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <Button color="dark" outline>Copy</Button></Clipboard>
+        </h6>
+      </div>
       <Accordion
         open={openItem}
         toggle={function noRefCheck(){}}

@@ -19,7 +19,6 @@ const Signup = () => {
   }, []);
 
   const onFormSubmit = event => {
-    event.preventDefault();
 
     const user = {
       username: username,

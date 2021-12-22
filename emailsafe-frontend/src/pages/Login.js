@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL, BASE_BACKEND } from '../globals'
+import { Button } from 'reactstrap'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -67,7 +68,9 @@ const Login = () => {
             onChange={event => setPassword(event.target.value)}
           />{' '}
           <br />
-          <input type='submit' value='Login' />
+          <Button className="px-5 m-3" type="submit">   
+            Login
+          </Button>
         </form>
       )}
     </div>
