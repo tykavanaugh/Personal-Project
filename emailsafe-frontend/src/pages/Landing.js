@@ -6,7 +6,7 @@ import { BsGithub } from 'react-icons/bs'
 const Landing = () => {
   return (
     <div>
-      <Card className="m-5 p-5 bg-dark bg-gradient text-warning">
+      <Card className="m-5 bg-dark bg-gradient text-warning">
         <CardBody>
           <CardTitle>
             <h2>Welcome to EmailSafe</h2>
@@ -23,7 +23,7 @@ const Landing = () => {
             <p className="fw-lighter">EmailSafe primarily uses data from VirusTotal and CheckPhish</p>
           </CardSubtitle>
           <CardFooter>
-            <BsGithub/>
+            <a href="https://github.com/tykavanaugh/Personal-Project"><BsGithub className="icon-github"/></a>
           </CardFooter>
         </CardBody>
       </Card>
