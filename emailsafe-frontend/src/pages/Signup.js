@@ -19,6 +19,7 @@ const Signup = () => {
   }, []);
 
   const onFormSubmit = event => {
+    event.preventDefault()
 
     const user = {
       username: username,
@@ -48,7 +49,10 @@ const Signup = () => {
           localStorage.clear();
           setErrors(true);
         }
-      });
+      }).catch(
+        error => {console.log(error)}
+      );
+
   };
 
   return (
@@ -92,8 +96,8 @@ const Signup = () => {
           required
         />{' '}
         <br />
-        <Button className="px-5 m-3" type="submit">   
-            Signup
+        <Button className="px-5 m-3" type="submit" color="primary">   
+            Login
         </Button>
       </form>
     </div>

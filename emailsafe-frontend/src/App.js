@@ -5,12 +5,14 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import UserHome from './pages/UserHome';
 import Logout from './pages/Logout';
+import React from 'react'
 
 //Global variables for deployment
 import { BASE_URL, BASE_BACKEND } from './globals'
 
 
 function App() {
+  React.initializeTouchEvents(true);
   return (
     <div className="App bg-secondary bg-gradient vh-100">
       <Router>

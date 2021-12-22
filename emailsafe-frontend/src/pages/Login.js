@@ -16,7 +16,7 @@ const Login = () => {
     }
   }, [])
 
-  const onSubmit = async (event) => {
+  const onFormSubmit = async (event) => {
     event.preventDefault()
     const user = {
       username: username,
@@ -49,7 +49,7 @@ const Login = () => {
       {loading === false && <h1>Login</h1>}
       {errors === true && <h2>Cannot log in with provided credentials</h2>}
       {loading === false && (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onFormSubmit}>
           <label htmlFor='username'>Username:</label> <br />
           <input
             name='username'
@@ -68,7 +68,7 @@ const Login = () => {
             onChange={event => setPassword(event.target.value)}
           />{' '}
           <br />
-          <Button className="px-5 m-3" type="submit">   
+          <Button className="px-5 m-3" type="submit" color="primary">   
             Login
           </Button>
         </form>
