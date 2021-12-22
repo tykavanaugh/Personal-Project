@@ -63,7 +63,7 @@ const ReportDisplay = (props) => {
       <Accordion 
         open={openItem}
         toggle={function noRefCheck(){}}
-        className='mx-3'
+        className='mx-3 mb-5'
       >
         {Array.from(userReports).slice(0).reverse().map((report,index) => <Report key= {index} reportID={`${index}`} reportObject={report} handleClick={handleAccordionClick}/>)}
       </Accordion>
