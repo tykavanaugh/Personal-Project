@@ -4,7 +4,7 @@ import { HiOutlineMail } from 'react-icons/hi'
 const Spinner = () => {
   return (
     <div>
-      <marquee behavior="scroll" direction="" scrollamount="25"><HiOutlineMail size={250} className="App-logo" /></marquee>
+      <marquee behavior="scroll" direction="" scrollamount="2" scrolldelay="1" truespeed> <HiOutlineMail size={250} className="App-logo" /></marquee>
     </div>
   )
 }
