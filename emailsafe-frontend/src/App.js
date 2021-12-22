@@ -12,7 +12,6 @@ import { BASE_URL, BASE_BACKEND } from './globals'
 
 
 function App() {
-  React.initializeTouchEvents(true);
   return (
     <div className="App bg-secondary bg-gradient vh-100">
       <Router>
