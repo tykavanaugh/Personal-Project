@@ -56,7 +56,7 @@ const ReportDisplay = (props) => {
             <p>Forward your suspcious emails to:</p> 
           </CardSubtitle>
           <CardText>
-            <code>{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <div><Button color="light" className="m-2" outline>Copy</Button></div></Clipboard>
+            <code className="text-light fs-5">{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <div><Button color="light" className="m-2" outline>Copy</Button></div></Clipboard>
           </CardText>
         </CardBody>
       </Card>

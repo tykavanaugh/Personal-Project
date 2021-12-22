@@ -9,6 +9,7 @@ import React from 'react'
 
 //Global variables for deployment
 import { BASE_URL, BASE_BACKEND } from './globals'
+import Landing from './pages/Landing';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <div className="pt-5"></div>
         <MainNavbar />
         <Routes>
+          <Route path='/' element={<Landing/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/userhome' element={<UserHome/>}></Route>

@@ -64,7 +64,7 @@ const MainNavbar = () => {
                 <DropdownMenu end className="bg-warning">
                   <DropdownItem>
                     <Link to='/logout' style={navbarDropdownStyle} >
-                      <center><Button color="warning" >Logout</Button></center>
+                      <center><Button className="shadow-none logout-btn" color="warning" >Logout</Button></center>
                     </Link>
                   </DropdownItem>
                 </DropdownMenu>

@@ -56,3 +56,29 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  color: #ffc107;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 3s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.logout-btn {
+  outline: none !important;
+  box-shadow: none;
+}
