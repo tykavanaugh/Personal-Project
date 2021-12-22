@@ -68,11 +68,11 @@ const ReportDetail = ({reportObject}) => {
   }
 
   return (
-    <>
+    <div>
       <div>
-      <div className="d-grid gap-2">
+      <div className="d-grid gap-2 ">
           <Button
-            color="dark"
+            color="warning"
             onClick={() => {setIsOpen(!isOpen)}}
             style={{
               marginBottom: '1rem'
@@ -83,7 +83,7 @@ const ReportDetail = ({reportObject}) => {
         </div>
         <Collapse isOpen={isOpen}>
           <Card>
-            <CardBody>
+            <CardBody className="bg-light">
               <dl className="text-start">
                 <dt>
                   
@@ -100,7 +100,7 @@ const ReportDetail = ({reportObject}) => {
           </Card>
         </Collapse>
       </div>
-    </>
+    </div>
   )
 }
 

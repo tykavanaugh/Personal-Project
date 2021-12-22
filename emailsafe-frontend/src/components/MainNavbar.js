@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
-import {Navbar,NavbarBrand,NavbarToggler,Collapse,NavItem,Nav,UncontrolledDropdown,DropdownItem,NavbarText,NavLink,DropdownToggle,DropdownMenu} from 'reactstrap'
+import {Navbar,NavbarBrand,NavbarToggler,Collapse,NavItem,Nav,UncontrolledDropdown,DropdownItem,NavbarText,NavLink,DropdownToggle,DropdownMenu,Button} from 'reactstrap'
 
 const MainNavbar = () => {
   const [isAuth,setIsAuth] = useState(false)
@@ -18,7 +18,7 @@ const MainNavbar = () => {
 
   const navbarDropdownStyle = {
     textDecoration: "none",
-    color: 'black'
+    color: 'black',
   };
 
   useEffect(() => {
@@ -34,10 +34,10 @@ const MainNavbar = () => {
         color="dark"
         expand
         fixed="top"
-        className='p-3'
+        className='p-3 bg-gradient'
       >
         <NavbarBrand style={navbarBrandStyle}>
-          EmailSafe
+          <h2 className="text-warning">EmailSafe</h2>
         </NavbarBrand>
         <NavbarToggler onClick={function noRefCheck(){}} />
         {isAuth ? (
@@ -47,7 +47,7 @@ const MainNavbar = () => {
               navbar
             >
               <NavItem>
-                <Link to='/userhome' style={navbarLinkStyle} >View Your Reports</Link>
+                <Link to='/userhome' style={navbarLinkStyle} ><Button color="warning" outline >View Your Reports</Button></Link>
               </NavItem>
             </Nav>
             <UncontrolledDropdown
@@ -59,18 +59,13 @@ const MainNavbar = () => {
                   nav
                   style={navbarLinkStyle}
                 >
-                  Account
+                  <Button color="warning" outline size="lg">Account</Button>
                 </DropdownToggle>
-                <DropdownMenu end >
+                <DropdownMenu end className="bg-warning">
                   <DropdownItem>
-                    Account Info
-                  </DropdownItem>
-                  <DropdownItem>
-                    Register Email
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    <Link to='/logout' style={navbarDropdownStyle} >Logout</Link>
+                    <Link to='/logout' style={navbarDropdownStyle} >
+                      <center><Button color="warning" >Logout</Button></center>
+                    </Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -84,10 +79,14 @@ const MainNavbar = () => {
           </Nav>
           <Nav>
             <NavItem className='mx-3'>
-                <Link to='/login' style={navbarLinkStyle} >Login</Link>
+                <Link to='/login' style={navbarLinkStyle} >
+                  <Button color="warning" outline size="lg">Log In</Button>
+                </Link>
             </NavItem>
             <NavItem className='mx-3'>
-                <Link to='/signup' style={navbarLinkStyle} >Signup</Link>
+                <Link to='/signup' style={navbarLinkStyle} >
+                <Button color="warning" outline size="lg">Sign Up</Button>
+                </Link>
             </NavItem>
           </Nav>
         </Collapse>

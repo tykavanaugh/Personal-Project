@@ -8,7 +8,7 @@ const SummaryDetail = ({reportObject}) => {
       <div>
       <div className="d-grid gap-2">
           <Button
-            color="dark"
+            color="warning"
             onClick={() => {setIsOpen(!isOpen)}}
             style={{
               marginBottom: '1rem'

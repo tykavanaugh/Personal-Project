@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color: #ffc107dc;
+}
+
+.accordion-button {
+  color: grey;
+  background-color: #ffc1075e;
+}
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

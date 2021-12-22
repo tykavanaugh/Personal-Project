@@ -13,7 +13,7 @@ import { BASE_URL, BASE_BACKEND } from './globals'
 
 function App() {
   return (
-    <div className="App bg-secondary bg-gradient vh-100">
+    <div className="App">
       <Router>
         <div className="pt-5"></div>
         <div className="pt-5"></div>

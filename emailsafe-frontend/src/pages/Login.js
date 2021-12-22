@@ -68,7 +68,7 @@ const Login = () => {
             onChange={event => setPassword(event.target.value)}
           />{' '}
           <br />
-          <Button className="px-5 m-3" type="submit" color="primary" style={{cursor:"pointer"}}>   
+          <Button className="px-5 m-3" type="submit" color="warning" style={{cursor:"pointer"}}>   
             Login
           </Button>
         </form>

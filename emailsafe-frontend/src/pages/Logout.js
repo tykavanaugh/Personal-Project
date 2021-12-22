@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { BASE_URL, BASE_BACKEND } from '../globals'
+import { Button } from 'reactstrap'
 
 const Logout = () => {
   const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ const Logout = () => {
       .then(data => {
         console.log(data);
         localStorage.clear();
-        window.location.replace(`${BASE_URL}login`);
+        window.location.replace(`${BASE_URL}`);
       });
   };
 
@@ -35,7 +36,9 @@ const Logout = () => {
       {loading === false && (
         <Fragment>
           <h1>Are you sure you want to logout?</h1>
-          <input type='button' value='Logout' onClick={handleLogout} />
+          <Button className="px-5 m-3" type="submit" color="warning" style={{cursor:"pointer"}} onClick={handleLogout}>   
+            Logout
+          </Button>
         </Fragment>
       )}
     </div>

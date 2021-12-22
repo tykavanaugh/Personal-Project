@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion,Button } from 'reactstrap'
+import { Accordion,Button, CardSubtitle, CardTitle, CardBody,Card, CardText } from 'reactstrap'
 import { useState,useEffect } from 'react'
 import { BASE_URL, BASE_BACKEND } from '../globals'
 import { fetchCurrentUser, fetchUserReports } from '../api/DjangoAPI'
@@ -47,14 +47,20 @@ const ReportDisplay = (props) => {
 
   return (
     <>
-      <div className="bg-light bg-gradient">
-        <h1>{username}'s Reports</h1>
-        <h6>
-        <p>Forward your suspcious emails to:</p> 
-        <code>{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <Button color="dark" outline>Copy</Button></Clipboard>
-        </h6>
-      </div>
-      <Accordion
+      <Card className="bg-dark bg-gradient m-5">
+        <CardBody className="text-warning">
+          <CardTitle>
+            <h1>{username}'s Reports</h1>
+          </CardTitle>
+          <CardSubtitle>
+            <p>Forward your suspcious emails to:</p> 
+          </CardSubtitle>
+          <CardText>
+            <code>{TARGET_EMAIL}</code><Clipboard component="span" data-clipboard-text={TARGET_EMAIL}> <div><Button color="light" className="m-2" outline>Copy</Button></div></Clipboard>
+          </CardText>
+        </CardBody>
+      </Card>
+      <Accordion 
         open={openItem}
         toggle={function noRefCheck(){}}
         className='mx-3'
