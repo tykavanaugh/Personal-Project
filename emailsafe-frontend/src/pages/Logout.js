@@ -34,7 +34,7 @@ const Logout = () => {
   return (
     <div>
       {loading === false && (
-        <Fragment>
+        <Fragment className='m-5'>
           <h1>Are you sure you want to logout?</h1>
           <Button className="px-5 m-3" type="submit" color="warning" style={{cursor:"pointer"}} onClick={handleLogout}>   
             Logout
