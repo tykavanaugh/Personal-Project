@@ -1,5 +1,7 @@
 # Emailsafe 
 
+Video demo for CS50: https://youtu.be/_V0zo-OrB1o
+
 Emailsafe is fullstack web application that makes it easy for someone with the computer literacy of a non-technical office worker to safely take advantage of more sophisticated tools to help identify regular or standard junk emails apart from more malicious phishing attempts. 
 
 ## Installation
